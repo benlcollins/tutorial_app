@@ -10,28 +10,36 @@
 <body>
 
 <header class="group">
-	<div class="logo">
-		<h1><%= link_to "Tutorial searching app", links_path %></h1>
+	<div>
+		<h1><%= link_to "Tutorial searching app", links_path, class: "logo" %></h1>
 	</div>
 
 	<div class="heading-navigation">
 		<ul>
 			<li>
-				<% if @favorites %>
-					<%= link_to "Favorites (" + @favorites.count.to_s + ")", favorites_path, class: "new-resource-link" %>
+				<%= form_tag links_path, method: "get" do %>
+					<%= text_field_tag :search, params[:search] %>
+					<%= submit_tag "SEARCH", :name => nil, class: "search-button"  %>
 				<% end %>
 			</li>
 			<li>
-				<%= link_to "Submit new resource", new_link_path, class: "new-resource-link" %>
+				<% if user_signed_in? %>
+					<div class="new-resource-link">Hello <%= current_user.email %></div>
+					<%= link_to "Logout?", destroy_user_session_path, class: "new-resource-link", :method => :delete %>
+				<% else %>
+					<%= link_to "Sign in", new_user_session_path, class: "new-resource-link" %> / <%= link_to "Register", new_user_registration_path, class: "new-resource-link" %>
+				<% end %>
+			</li>
+			<li>
+				<% if user_signed_in? %>
+					<%= link_to "Favorites", favorites_path, class: "new-resource-link" %>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "Submit resource", new_link_path, class: "new-resource-link" %>
 			</li>
 			<li>
 				<%= link_to "About", about_path, class: "new-resource-link" %>
-			</li>
-			<li>
-				<%= form_tag links_path, method: "get" do %>
-					<%= text_field_tag :search, params[:search] %>
-					<%= submit_tag "SEARCH", :name => nil %>
-				<% end %>
 			</li>
 		</ul>
 	</div>
@@ -44,11 +52,18 @@
 <div class="group container main-content">
 
 	<!-- Display any flash notices at the top of the page -->
-	<% if flash[:success] %>
+	<% if flash[:success] || notice %>
 		<div class="success"><%= flash[:success] %></div>
+		<p class="notice"><%= notice %></p>
 	<% elsif flash[:alert] %>
 		<div class="alert"><%= flash[:alert] %></div>
+		<p class="alert"><%= alert %></p>
 	<% end %>
+
+	<!-- These are the devise flash notices -->
+	
+	
+	
 
 	<%= yield %>
 </div>

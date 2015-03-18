@@ -1,5 +1,7 @@
 class FavoritesController < ApplicationController
 
+	before_action :authenticate_user!
+
 	def index
 		@favorites = Favorite.all.sort.reverse
 	end
@@ -15,7 +17,7 @@ class FavoritesController < ApplicationController
 		# binding.pry
 		@favorite = Favorite.find(params[:id])
 		@favorite.destroy
-		redirect_to links_path
+		redirect_to favorites_path
 	end
 
 end

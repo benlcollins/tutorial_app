@@ -2,14 +2,20 @@ class LinksController < ApplicationController
 
 	before_action :link_find, except: [:index, :new, :create]
 	before_action :favorites_find, only: [:index]
+	before_action :get_favorites
+	before_action :authenticate_user!, except: [:index, :show]
+
+	def get_favorites
+		@favorites = Favorite.all
+	end
 
 	def index
 		@days = Link.all.map do |m|
 			m.created_at.to_date
-		end.uniq.reverse
+		end.uniq.sort.reverse
 
 		@today = Time.new.to_date
-		
+
 		# binding.pry
 		if params[:search]
 			# put search results action here

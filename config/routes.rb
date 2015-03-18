@@ -10,6 +10,9 @@ Rails.application.routes.draw do
 
   get '/about' => 'pages#about'
   
+  devise_for :users, :controllers => {registrations: "registrations"}
+  resources :users, only: [:show]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

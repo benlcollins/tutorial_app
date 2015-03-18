@@ -4,13 +4,17 @@
 
 <h2>Favorites</h2>
 
-<ul>
-	<% @favorites.each do |f| %>
-		<li>
-			<%= link_to f.title, link_path(f.link_id), class: "tutorial-show-link" %>
-			<%= form_tag f, :method => :delete do %>
-				<%= submit_tag "Unfavorite" %>
-			<% end %>
-		</li>
-	<% end %>
-</ul>
+<% if @favorites.count == 0 %>
+	<p>You currently have no favorites.</p>
+<% else %>
+	<ul>
+		<% @favorites.each do |f| %>
+			<li>
+				<%= link_to f.title, link_path(f.link_id), class: "tutorial-show-link" %>
+				<%= form_tag f, :method => :delete do %>
+					<%= submit_tag "Unfavorite" %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

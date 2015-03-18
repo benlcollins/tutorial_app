@@ -33,10 +33,11 @@ Header styles
 .logo {
 	float: left;
 	padding: 15px 0 15px 35px;
+	color: white;
+	text-decoration: none;
 }
 .logo a {
-	text-decoration: none;
-	color: #333333;
+
 }
 .heading-navigation {
 	margin: 0 25px 0 0;
@@ -45,10 +46,10 @@ Header styles
 }
 .heading-navigation li {
 	/*list-style-type: none;*/
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	letter-spacing: 0.1em;
 	display: inline-block;
-	padding-left: 15px;
+	padding-left: 20px;
 }
 
 
@@ -84,8 +85,11 @@ Main list styling
 Link styling
 ------------------------------------------------- */
 .new-resource-link {
-	font: 16px/24px helvetica, arial, verdana;
-	color: #333333;
+	font: 12px/20px helvetica, arial, verdana;
+	color: #fff;
+}
+.search-button {
+	padding-left: 20px;
 }
 
 
