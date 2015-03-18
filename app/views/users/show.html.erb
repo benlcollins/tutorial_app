@@ -2,4 +2,8 @@
 	<%= link_to "Home", links_path %> / User Profile
 </p>
 
-<h1><%= @user ? @user.email : "Sign in?" %></h1>
+<% if @user == current_user %>
+	<h1>Welcome, <%= @user.username %>, to your profile page</h1>
+<% else %>
+	<h1>You are not the logged in user</h1>
+<% end %>

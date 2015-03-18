@@ -34,6 +34,7 @@ class LinksController < ApplicationController
 
 	def create
 		@link = Link.new(strong_upload_params)
+		@link.user_id = current_user[:id]
 		if @link.save
 			flash[:success] = "Tutorial successfully uploaded"
 			redirect_to links_path
@@ -70,7 +71,7 @@ class LinksController < ApplicationController
 	private
 
 	def strong_upload_params
-		params.require(:link).permit(:title, :link_url, :synopsis, :year, :username)
+		params.require(:link).permit(:title, :link_url, :synopsis, :year)
 	end
 
 	def link_find

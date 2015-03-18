@@ -6,7 +6,7 @@
 				<li>
 					<%= link_to link.title, link_path(link), class: "tutorial-show-link" %>
 					<div class="tutorial-age">Tutorial from <%= link.year %></div>
-					<div class="tutorial-submit">Link posted by <%= link_to link.username, current_user %> at: <%= link.created_at %></div>
+					<div class="tutorial-submit">Link posted by <%= link_to User.find(link.user_id).username, user_path(link.user_id) %> at: <%= link.created_at %></div>
 					<div class="favorite-button">
 						<% Favorite.find_by(link_id: link.id) ? @favorite = Favorite.find_by(link_id: link.id) : \
 							@favorite = Favorite.new(link_id: link.id, title: link.title) %>
