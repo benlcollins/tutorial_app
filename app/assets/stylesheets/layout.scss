@@ -1,0 +1,22 @@
+/* -------------------------------------------------
+Layout Styles
+------------------------------------------------- */
+header {
+	border-bottom: 2px solid #c3c3c3;
+}
+.container {
+	width: 75%;
+	margin: 0 auto;
+}
+.group:before,
+.group:after {
+	content: "";
+	display: table;
+}
+.group:after {
+	clear:both;
+}
+.group {
+	clear:both;
+	*zoom: 1;
+}

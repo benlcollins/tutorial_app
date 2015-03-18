@@ -1,0 +1,16 @@
+<p class="breadcrumb">
+	<%= link_to "Home", links_path %> / Favorites
+</p>
+
+<h2>Favorites</h2>
+
+<ul>
+	<% @favorites.each do |f| %>
+		<li>
+			<%= link_to f.title, link_path(f.link_id), class: "tutorial-show-link" %>
+			<%= form_tag f, :method => :delete do %>
+				<%= submit_tag "Unfavorite" %>
+			<% end %>
+		</li>
+	<% end %>
+</ul>

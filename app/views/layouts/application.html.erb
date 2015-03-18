@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TutorialApp</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<header class="group">
+	<div class="logo">
+		<h1><%= link_to "Tutorial searching app", links_path %></h1>
+	</div>
+
+	<div class="heading-navigation">
+		<ul>
+			<li>
+				<% if @favorites %>
+					<%= link_to "Favorites (" + @favorites.count.to_s + ")", favorites_path, class: "new-resource-link" %>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "Submit new resource", new_link_path, class: "new-resource-link" %>
+			</li>
+			<li>
+				<%= link_to "About", about_path, class: "new-resource-link" %>
+			</li>
+			<li>
+				<%= form_tag links_path, method: "get" do %>
+					<%= text_field_tag :search, params[:search] %>
+					<%= submit_tag "SEARCH", :name => nil %>
+				<% end %>
+			</li>
+		</ul>
+	</div>
+
+	
+
+
+</header>
+
+<div class="group container main-content">
+
+	<!-- Display any flash notices at the top of the page -->
+	<% if flash[:success] %>
+		<div class="success"><%= flash[:success] %></div>
+	<% elsif flash[:alert] %>
+		<div class="alert"><%= flash[:alert] %></div>
+	<% end %>
+
+	<%= yield %>
+</div>
+
+<footer>
+
+</footer>
+
+</body>
+</html>

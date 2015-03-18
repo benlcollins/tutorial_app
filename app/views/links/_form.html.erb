@@ -1,0 +1,28 @@
+<% if @link.errors.any? %>
+	<p>There were some problems submitting your form:</p>
+	<ul>
+		<% @link.errors.full_messages.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<%= form_for @link do |f| %>
+
+	<%= f.label :title %>
+	<%= f.text_field :title %>
+
+	<%= f.label :link_url %>
+	<%= f.text_field :link_url %>
+
+	<%= f.label :synopsis %>
+	<%= f.text_field :synopsis %>
+
+	<%= f.label :year %>
+	<%= f.text_field :year %>
+
+	<%= f.label :username %>
+	<%= f.text_field :username %>
+
+	<%= f.submit %>
+<% end %>

@@ -1,0 +1,7 @@
+<p class="breadcrumb">
+	<%= link_to "Home", links_path %> / <%= link_to @link.title, link_path(@link) %> / Edit 
+</p>
+
+<h2>Edit <%= @link.title %></h2>
+
+<%= render "form" %>

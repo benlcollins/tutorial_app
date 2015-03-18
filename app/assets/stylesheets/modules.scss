@@ -1,0 +1,113 @@
+/* -------------------------------------------------
+Modules Styles
+------------------------------------------------- */
+
+
+/* -------------------------------------------------
+Typography
+------------------------------------------------- */
+h1 {
+	font: 24px/36px helvetica, arial, verdana;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+h2 {
+	font: 18px/24px helvetica, arial, verdana;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	padding: 20px 0;
+}
+.breadcrumb {
+	padding: 15px 0 5px 0;
+}
+.content {
+	font: 18px/32px helvetica, arial, verdana;
+	color: #333333;
+}
+
+
+
+/* -------------------------------------------------
+Header styles
+------------------------------------------------- */
+.logo {
+	float: left;
+	padding: 15px 0 15px 35px;
+}
+.logo a {
+	text-decoration: none;
+	color: #333333;
+}
+.heading-navigation {
+	margin: 0 25px 0 0;
+	padding: 15px;
+	float: right;
+}
+.heading-navigation li {
+	/*list-style-type: none;*/
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	display: inline-block;
+	padding-left: 15px;
+}
+
+
+
+/* -------------------------------------------------
+Main list styling
+------------------------------------------------- */
+.main-content ul {
+	list-style-type: none;
+}
+.main-content li {
+	/*border: 1px solid red;*/
+	margin-bottom: 15px;
+	padding: 15px;
+	background-color: #f6f6f6;
+	border-radius: 15px;
+}
+.tutorial-show-link {
+	/*text-transform: uppercase;*/
+	font: 18px/32px helvetica, arial, verdana;
+	text-decoration: none;
+	color: #333333;
+}
+.tutorial-age {
+	padding: 5px;
+}
+.tutorial-submit {
+	padding: 5px;
+}
+
+
+/* -------------------------------------------------
+Link styling
+------------------------------------------------- */
+.new-resource-link {
+	font: 16px/24px helvetica, arial, verdana;
+	color: #333333;
+}
+
+
+
+/* -------------------------------------------------
+Flash messages
+------------------------------------------------- */
+.flash {
+	width: 70%;
+	margin: 20px auto;
+	text-align: center;
+	padding: 10px;
+	color: white;
+	border-radius: 0.5rem;
+}
+.success {
+	@extend .flash;
+	background-color: #49bb5b;
+	border: 1px solid #2B823A;
+}
+.alert {
+	@extend .flash;
+	background-color: #f2dede;
+	border: 1px solid #eed3d7;
+}

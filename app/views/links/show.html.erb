@@ -1,0 +1,15 @@
+<p class="breadcrumb">
+	<%= link_to "Home", links_path %> / <%= @link.title %>
+</p>
+
+<h2><%= @link.title %></h2>
+
+<p class="tutorial-show-link"><a href="<%= @link.link_url %>" target="_blank"><%= @link.link_url %></a></p>
+
+<p class="content"><%= @link.synopsis %></p>
+
+<p class="tutorial-show-link"><%= link_to "Edit " + @link.title, edit_link_path(@link) %></p>
+
+<%= form_for @link, :method => :delete do |f| %>
+	<%= f.submit "Remove" %>
+<% end %>
