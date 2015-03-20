@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318212829) do
+ActiveRecord::Schema.define(version: 20150319215651) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "favorites", force: :cascade do |t|
-    t.string "link_id"
-    t.string "title"
+    t.string  "link_id"
+    t.string  "title"
+    t.integer "user_id"
   end
 
   create_table "links", force: :cascade do |t|

@@ -8,8 +8,13 @@
 
 <p class="content"><%= @link.synopsis %></p>
 
-<p class="tutorial-show-link"><%= link_to "Edit " + @link.title, edit_link_path(@link) %></p>
+<!-- Want to show a screenshot of the website here -->
+<!-- <img src="<%= @response %>"> -->
 
-<%= form_for @link, :method => :delete do |f| %>
-	<%= f.submit "Remove" %>
+<% if user_signed_in? && current_user[:id] == @link_submitted_by %>
+	<p class="tutorial-show-link"><%= link_to "Edit " + @link.title, edit_link_path(@link) %></p>
+	<%= form_for @link, :method => :delete do |f| %>
+		<%= f.submit "Remove" %>
+	<% end %>
 <% end %>
+

@@ -1,35 +1,16 @@
-<% @days.each do |day| %>
-	<h2><%= day == @today ? "Today" : day %></h2>
+<% @grouped_links.each do |date, links| %>
+	<h2><%= date %></h2>
 	<ul>
-		<% @links.each do |link| %>
-			<% if link.created_at.to_date == day %>
-				<li>
-					<%= link_to link.title, link_path(link), class: "tutorial-show-link" %>
-					<div class="tutorial-age">Tutorial from <%= link.year %></div>
-					<div class="tutorial-submit">Link posted by <%= link_to User.find(link.user_id).username, user_path(link.user_id) %> at: <%= link.created_at %></div>
-					<div class="favorite-button">
-						<% Favorite.find_by(link_id: link.id) ? @favorite = Favorite.find_by(link_id: link.id) : \
-							@favorite = Favorite.new(link_id: link.id, title: link.title) %>
-							
-							<% if @favorite.new_record? %>
-								<!-- link is not yet a favorite, disply favorite button -->
-								<%= form_for @favorite do |f| %>
-									<%= f.hidden_field :link_id %>
-									<%= f.hidden_field :title %>
-									<%= f.submit "Favorite" %>
-								<% end %>
-							
-							<% else %>
-								<!-- link is already a favorite, disply unfavorite button -->
-								<%= form_for @favorite, :method => :delete do |f| %>
-									<%= f.submit "Unfavorite" %>
-								<% end %>
-								
-							<% end %>
-					</div>
-				</li>
-			<% end %>
+		<% links.each do |link| %>
+			<li>
+				<%= link_to link.title, link_path(link), class: "tutorial-show-link" %>
+				<div class="tutorial-age">Tutorial from <%= link.year %></div>
+				<div class="tutorial-submit">Link posted by <%= link_to User.find(link.user_id).username, user_path(link.user_id) %> on <%= link.created_at.strftime("%A") %> at <%= link.created_at.strftime("%l:%M %P") %></div>
+
+				<%= render partial: 'favorite_buttons', locals: {link: link} %>
+			</li>
 		<% end %>
 	</ul>
-
 <% end %>
+
+

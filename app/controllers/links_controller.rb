@@ -10,22 +10,14 @@ class LinksController < ApplicationController
 	end
 
 	def index
-		@days = Link.all.map do |m|
-			m.created_at.to_date
-		end.uniq.sort.reverse
-
-		@today = Time.new.to_date
-
-		# binding.pry
 		if params[:search]
 			# put search results action here
-			# binding.pry
 			@links = Link.where("title = ?", params[:search])
-
 			# Client.where("orders_count = ?", params[:orders])
 		else
 			@links = Link.all.order("created_at").reverse
 		end
+		@grouped_links = @links.group_by {|link| link.created_at.to_date}
 	end
 
 	def new
@@ -45,6 +37,13 @@ class LinksController < ApplicationController
 	end
 
 	def show
+		# grab = Blockspring.runParsed("screenshot-webpage", { "url" => "http://www.google.com", "width" => 300 }).params
+		# open(grab["screenshot"]).read
+		# response.addFileOutput("screenshot", "my_screenshot.png")
+		# @response = response.end()
+
+		@link_submitted_by = Link.find(params[:id]).user_id
+		# binding.pry
 	end
 
 	def edit

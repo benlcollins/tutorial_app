@@ -1,0 +1,18 @@
+<div class="favorite-button">
+	<% Favorite.find_by(link_id: link.id) ? @favorite = Favorite.find_by(link_id: link.id) : @favorite = Favorite.new(link_id: link.id, title: link.title) %>
+	<% if @favorite.new_record? %>
+		<!-- link is not yet a favorite, disply favorite button -->
+		<%= form_for @favorite do |f| %>
+			<%= f.hidden_field :link_id %>
+			<%= f.hidden_field :title %>
+			<%= f.submit "Favorite" %>
+		<% end %>
+	
+	<% else %>
+		<!-- link is already a favorite, disply unfavorite button -->
+		<%= form_for @favorite, :method => :delete do |f| %>
+			<%= f.submit "Unfavorite" %>
+		<% end %>
+		
+	<% end %>
+</div>
